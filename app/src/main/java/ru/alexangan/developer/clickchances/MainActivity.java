@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements ButtonsLineFragme
         {
             if (turnsLeft == turnsTotal)
             {
-                btnStart.setText("Exit");
+                btnStart.setText(R.string.txt_Exit);
                 createTurn();
             }
             else
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements ButtonsLineFragme
     {
         ButtonsLineFragment frag = new ButtonsLineFragment();
         fragList.add(frag);
-        tvGameInfo.setText("Chance: "+ (turnsLeft-1) + " out from " + turnsLeft);
+        tvGameInfo.setText(getString(R.string.txt_Chance)+ (turnsLeft-1) + getString(R.string.txt_out_of) + turnsLeft);
         setFragmentBtnQuant(frag, turnsLeft--);
         mFragmentTransaction = mFragmentManager.beginTransaction();
         mFragmentTransaction.add(R.id.llfragments, frag);
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements ButtonsLineFragme
         if (id != btnBadLuckId)
         {
             score += turnsTotal - turnsLeft;
-            tvScore.setText("Score:  " + score);
+            tvScore.setText(getString(R.string.txt_Score) + score);
         }
 
         if (id == btnBadLuckId || turnsLeft == 1)
@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements ButtonsLineFragme
             mFragmentTransaction.commit();
         }
 
-        showResultsDialog("Your score is: " + score + "\n\nTry one more time ?");
+        showResultsDialog(getString(R.string.txt_Your_score_is) + score + getString(R.string.txt_Try_one_more_time));
 
         turnsLeft = turnsTotal;
         score = 0;
@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity implements ButtonsLineFragme
 
         AlertDialogFragment dialog = new AlertDialogFragment();
         dialog.setArguments(messageArgs);
-        dialog.show(fManager, "dialog");
+        dialog.show(fManager, "");
     }
 
     public void onDialogYesClick()

@@ -79,7 +79,7 @@ public class ButtonsLineFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         dynamicLayout = new FlexboxLayout(context);
-        dynamicLayout.setBackgroundColor(Color.GREEN);
+        dynamicLayout.setBackgroundColor(getResources().getColor(R.color.colorGreen));
 
         DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
         float screenWidth = displayMetrics.widthPixels;
@@ -118,7 +118,7 @@ public class ButtonsLineFragment extends Fragment {
                         btnArray.get(k).setId(0);
                     }
 
-                    dynamicLayout.setBackgroundColor(Color.DKGRAY);
+                    dynamicLayout.setBackgroundColor(getResources().getColor(R.color.colorDarkGrey));
 
                     Log.d(LOG_TAG, "Button click in Fragment with id: " + id_);
                 }

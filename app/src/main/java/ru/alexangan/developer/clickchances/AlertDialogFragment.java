@@ -41,7 +41,7 @@ public class AlertDialogFragment extends DialogFragment implements View.OnClickL
 
             if(messages.getBoolean(Enable_No_Btn)) {
 
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(R.string.btnNo, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         ((MainActivity) context).onDialogNoClick();
                     }

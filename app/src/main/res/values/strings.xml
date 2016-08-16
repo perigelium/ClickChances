@@ -4,5 +4,12 @@
     <string name="start">Start</string>
     <string name="btnYes">Yes</string>
     <string name="results_dialog_title">Game results</string>
+    <string name="txt_Exit">Exit</string>
+    <string name="txt_Score">"Score:  "</string>
+    <string name="txt_Your_score_is">"Your score is: "</string>
+    <string name="txt_Try_one_more_time">\n\nTry one more time ?</string>
+    <string name="txt_Chance">"Chance: "</string>
+    <string name="txt_out_of">" out of "</string>
+    <string name="btnNo">No</string>
 
 </resources>
