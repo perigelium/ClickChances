@@ -11,5 +11,6 @@
     <string name="txt_Chance">"Chance: "</string>
     <string name="txt_out_of">" out of "</string>
     <string name="btnNo">No</string>
+    <string name="txt_Start">Start</string>
 
 </resources>

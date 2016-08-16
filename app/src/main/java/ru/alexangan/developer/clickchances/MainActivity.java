@@ -108,6 +108,7 @@ public class MainActivity extends AppCompatActivity implements ButtonsLineFragme
 
         if (id == btnBadLuckId || turnsLeft == 1)
         {
+            btnStart.setText(R.string.txt_Start);
             finishGame();
             return;
         }
@@ -152,6 +153,7 @@ public class MainActivity extends AppCompatActivity implements ButtonsLineFragme
     public void onDialogYesClick()
     {
         createTurn();
+        btnStart.setText(R.string.txt_Exit);
     }
 
     public void onDialogNoClick() {
