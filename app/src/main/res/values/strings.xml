@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Guess button</string>
+
+    <string name="start">Start</string>
+    <string name="btnYes">Yes</string>
+    <string name="results_dialog_title">Game results</string>
+
+</resources>
