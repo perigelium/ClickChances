@@ -24,6 +24,7 @@ public class ButtonsLineFragment extends Fragment {
 
     final String LOG_TAG = "df";
     int btnCount = 0;
+    int btnBadLuckId = 0;
     Context context;
     FlexboxLayout dynamicLayout;
 
@@ -51,6 +52,7 @@ public class ButtonsLineFragment extends Fragment {
         Bundle args=getArguments();
 
         btnCount = args.getInt("btnCount", 0);
+        btnBadLuckId = args.getInt("btnBadLuckId", 0);
     }
 
     @Override
@@ -111,12 +113,24 @@ public class ButtonsLineFragment extends Fragment {
 
                     final int id_ = btnNew.getId();
 
+                    if(id_ == 0)
+                                return;
+
+                    if(id_ != btnBadLuckId)
+                    {
+                        btnNew.setTextColor(Color.GREEN);
+                    }
+
+                    btnArray.get(btnBadLuckId-1).setTextColor(Color.RED);
+
                     fragEventListener.fragEvent(id_);
 
                     for (int k = 0; k < btnArray.size() ; k++)
                     {
                         btnArray.get(k).setId(0);
                     }
+
+
 
                     dynamicLayout.setBackgroundColor(getResources().getColor(R.color.colorDarkGrey));
 

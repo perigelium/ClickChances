@@ -3,6 +3,7 @@ package ru.alexangan.developer.clickchances;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -50,13 +51,16 @@ public class MainActivity extends AppCompatActivity implements ButtonsLineFragme
         super.onResume();
     }
 
-    private void setFragmentBtnQuant(ButtonsLineFragment frag, int turnsLeft)
+    private void setFragmentBtnArgs(ButtonsLineFragment frag)
     {
         if (frag == null)
                         return;
 
         Bundle fragArgs = new Bundle();
+
         fragArgs.putInt("btnCount", turnsLeft);
+        fragArgs.putInt("btnBadLuckId", btnBadLuckId);
+
         frag.setArguments(fragArgs);
     }
 
@@ -78,19 +82,24 @@ public class MainActivity extends AppCompatActivity implements ButtonsLineFragme
 
     public void createTurn()
     {
+        Random r = new Random();
+        btnBadLuckId = r.nextInt(turnsLeft) + 1;
+
+        Log.d(LOG_TAG, "btnBadLuckId: " + btnBadLuckId);
+        Log.d(LOG_TAG, "turnsLeft: " + turnsLeft);
+
         ButtonsLineFragment frag = new ButtonsLineFragment();
         fragList.add(frag);
         tvGameInfo.setText(getString(R.string.txt_Chance)+ (turnsLeft-1) + getString(R.string.txt_out_of) + turnsLeft);
-        setFragmentBtnQuant(frag, turnsLeft--);
+
+        setFragmentBtnArgs(frag);
+
         mFragmentTransaction = mFragmentManager.beginTransaction();
         mFragmentTransaction.add(R.id.llfragments, frag);
         mFragmentTransaction.addToBackStack("frag");
         mFragmentTransaction.commit();
 
-        Random r = new Random();
-        btnBadLuckId = r.nextInt(turnsLeft+1) + 1;
-
-        Log.d(LOG_TAG, "btnBadLuckId: " + btnBadLuckId);
+        turnsLeft--;
     }
 
     @Override
@@ -98,7 +107,6 @@ public class MainActivity extends AppCompatActivity implements ButtonsLineFragme
 
         if (id == 0)
                     return;
-
 
         if (id != btnBadLuckId)
         {
@@ -109,7 +117,19 @@ public class MainActivity extends AppCompatActivity implements ButtonsLineFragme
         if (id == btnBadLuckId || turnsLeft == 1)
         {
             btnStart.setText(R.string.txt_Start);
-            finishGame();
+
+            Handler handler = new Handler();
+
+            Runnable runnableFinishGame = new Runnable() {
+                @Override
+                public void run()
+                {
+                    finishGame();
+                }
+            };
+
+            handler.postDelayed(runnableFinishGame, 2500);
+
             return;
         }
 
